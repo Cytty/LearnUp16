@@ -24,7 +24,7 @@ public class PedometerTest {
         pedometer.add(4, 2_000);
         pedometer.add(5, 3_000);
 
-        int expected = 6_901;
+        int expected = 3_901;
         int actual = pedometer.betterDay(steps);
 
         Assertions.assertEquals(expected, actual);
