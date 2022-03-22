@@ -20,12 +20,19 @@ public class Pedometer {
 
     public int betterDay(HashMap<Integer, Integer> steps) {                // считает количество необходимых шагов для рекорда
         int max = 0;
+        int maxStep = 0;
         for (int day : steps.keySet()) {
             if (steps.get(day) > max) {
                 max = steps.get(day);
             }
         }
-        int maxSteps = max + 1;
+        for (int day : steps.keySet()) {
+            if (!steps.containsKey(day + 1)) {
+                maxSteps = max - steps.get(day) + 1;
+            } else {
+                continue;
+            }
+        }
         return maxSteps;
     }
 }
