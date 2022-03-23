@@ -17,7 +17,7 @@ public class Pedometer {
         steps.put(day, sumStep);
 
         int max = 0;
-        int maxSteps = 0;
+        int maxStep = 0;
         for (int title : steps.keySet()) {
             if (steps.get(title) > max) {
                 max = steps.get(title);
@@ -25,11 +25,11 @@ public class Pedometer {
         }
         for (int title : steps.keySet()) {
             if (!steps.containsKey(day + 1)) {
-                maxSteps = max - steps.get(title) + 1;
+                maxStep = max - steps.get(title) + 1;
             } else {
                 continue;
             }
         }
-        return maxSteps;
+        return maxStep;
     }
 }
