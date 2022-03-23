@@ -1,4 +1,3 @@
-import java.util.HashMap;
 import java.util.Map;
 
 public class Pedometer {
@@ -8,27 +7,25 @@ public class Pedometer {
         this.steps = steps;
     }
 
-    public void add(Integer day, Integer step) {                           // добавляет шаги в менеджер
-       int sumStep;
-        if (step <= 0){
+    public int add(int day, int step) {
+        int sumStep;
+        if (step <= 0) {
             sumStep = steps.getOrDefault(day, 0);
-           } else {
+        } else {
             sumStep = steps.getOrDefault(day, 0) + step;
         }
-            steps.put(day, sumStep);
-    }
+        steps.put(day, sumStep);
 
-    public int betterDay(HashMap<Integer, Integer> steps) {                // считает количество необходимых шагов для рекорда
         int max = 0;
         int maxSteps = 0;
-        for (int day : steps.keySet()) {
-            if (steps.get(day) > max) {
-                max = steps.get(day);
+        for (int title : steps.keySet()) {
+            if (steps.get(title) > max) {
+                max = steps.get(title);
             }
         }
-        for (int day : steps.keySet()) {
+        for (int title : steps.keySet()) {
             if (!steps.containsKey(day + 1)) {
-                maxSteps = max - steps.get(day) + 1;
+                maxSteps = max - steps.get(title) + 1;
             } else {
                 continue;
             }
