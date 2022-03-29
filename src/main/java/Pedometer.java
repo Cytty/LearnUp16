@@ -1,6 +1,6 @@
 import java.util.Map;
 
-public class Pedometer {
+public class Pedometer implements Comparable<Pedometer> {
     private Map<Integer, Integer> steps;
 
     public Pedometer(Map<Integer, Integer> steps) {
@@ -11,7 +11,7 @@ public class Pedometer {
         int sumStep;
         int maxStep;
         int max = 0;                                           //ДОБАВЛЯЕМ ШАГИ
-        if (step <= 0 || steps.size() > Math.abs(day)) {      //если значение шагов отрицательное или день - прошедший
+        if (step <= 0 || steps.size() > Math.abs(day)) {       //если значение шагов отрицательное или день - прошедший
             sumStep = steps.getOrDefault(day, 0);    //оставить сумму шагов дня без изменений
         } else {
             sumStep = steps.getOrDefault(Math.abs(day), 0) + step; //иначе  добавь шаги к имеющемся в этом дне
@@ -29,5 +29,25 @@ public class Pedometer {
             maxStep = max - steps.get(day) + 1;                  //вычитаем из максимума пройденные шаги и прибавляем 1
         }
         return maxStep;
+    }
+
+    public int sum(Pedometer p2 ) {
+        int sum = 0;
+        for (int title : steps.keySet()) {
+            sum += steps.get(title);
+        }
+        return sum;
+    }
+    @Override
+    public int compareTo(Pedometer p2) {
+        //int sum1 = sum(this);
+        int sum2 = sum(p2);
+        if (sum(this) > sum2) {
+            return 1;
+        } else if (sum(this) < sum(p2)) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
