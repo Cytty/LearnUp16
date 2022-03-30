@@ -7,6 +7,10 @@ public class Pedometer implements Comparable<Pedometer> {
         this.steps = steps;
     }
 
+    public Map<Integer, Integer> getSteps() {
+        return steps;
+    }
+
     public int add(int day, int step) {
         int sumStep;
         int maxStep;
@@ -31,23 +35,34 @@ public class Pedometer implements Comparable<Pedometer> {
         return maxStep;
     }
 
-    public int sum(Pedometer p2 ) {
+    public int sumSteps() {                               //СЧИТАЕТ СУММУ ВСЕХ ШАГОВ В ШАГОМЕРЕ
         int sum = 0;
-        for (int title : steps.keySet()) {
-            sum += steps.get(title);
+        for (int title : steps.keySet()) {               //проходим по всем значениям ключей в мапе
+            sum += steps.get(title);                     //суммируем уже суммированное со следующим значением ключа
         }
         return sum;
     }
+
+    public int sumDay(int minStep) {                     //СЧИТАЕТ КОЛ-ВО ДНЕЙ, ГДЕ ШАГОВ БОЛЬШЕ МИНИМУМА
+        int countDay = 0;
+        for (int title : getSteps().keySet()) {         //проходим по всем значениям ключей в мапе
+            if (getSteps().get(title) > minStep) {      //фильтруем и считаем дни
+                countDay++;
+            }
+        }
+        return countDay;
+    }
+
     @Override
-    public int compareTo(Pedometer p2) {
-        //int sum1 = sum(this);
-        int sum2 = sum(p2);
-        if (sum(this) > sum2) {
+    public int compareTo(Pedometer pedometer) {                  //сравниваемся с приёмышем
+        if (sumSteps() > pedometer.sumSteps()) {
             return 1;
-        } else if (sum(this) < sum(p2)) {
-            return -1;
         } else {
-            return 0;
+            if (sumSteps() < pedometer.sumSteps()) {
+                return -1;
+            } else {
+                return 0;
+            }
         }
     }
 }
