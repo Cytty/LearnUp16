@@ -110,7 +110,6 @@ public class PedometerCompTest {
         pedometer2.add(4, 2_000);
 
         PedometerDayComparator comparator = new PedometerDayComparator(900);
-        int minSteps = 900;
 
         int actual = comparator.compare(pedometer1, pedometer2);
 

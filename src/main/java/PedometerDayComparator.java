@@ -13,7 +13,7 @@ public class PedometerDayComparator implements Comparator<Pedometer> {
         if (pedometer1.sumDay(stepsMin) > pedometer2.sumDay(stepsMin)) {
             return 1;
         } else {
-            if (pedometer1.sumDay(stepsMin) > pedometer2.sumDay(stepsMin)) {
+            if (pedometer1.sumDay(stepsMin) < pedometer2.sumDay(stepsMin)) {
                 return -1;
             } else {
                 return 0;
