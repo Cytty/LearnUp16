@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class PedometerCompTest {
 
@@ -137,6 +138,42 @@ public class PedometerCompTest {
         int actual = comparator.compare(pedometer1, pedometer2);
 
         Assertions.assertEquals(0, actual);
+    }
+
+    @Test
+    public void Zero() {
+        HashMap<Integer, Integer> steps = new HashMap<>();
+        Pedometer pedometer = new Pedometer(steps);
+        pedometer.add(1, 2_100);
+        pedometer.add(2, 10_001);
+        pedometer.add(3, 700);
+        pedometer.add(5, 10_200);
+        pedometer.add(6, 7_159);
+        pedometer.add(7, 9_999);
+        pedometer.add(8, 6_257);
+        pedometer.add(9, 16_851);
+        pedometer.add(10, 11_967);
+        pedometer.add(11, 10_000);
+        pedometer.add(12, 1_573);
+        pedometer.add(13, 2_854);
+        pedometer.add(14, 12_861);
+        pedometer.add(15, 100);
+
+        int minStep = 10_000;
+
+        Map<Integer, Boolean> stepsExpected = new HashMap<>();
+        stepsExpected.put(2, true);
+        stepsExpected.put(5, true);
+        stepsExpected.put(9, true);
+        stepsExpected.put(10, true);
+        stepsExpected.put(14, true);
+
+        Map<Integer, Boolean> stepsActual = pedometer.printAllDaysByCriteria(step -> step > minStep);
+        for (int title : stepsActual.keySet()) {
+            System.out.println("день " + title + " " + stepsActual.get(title));
+        }
+
+        Assertions.assertEquals(stepsExpected, stepsActual);
     }
 
 }
