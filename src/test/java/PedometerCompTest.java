@@ -11,7 +11,9 @@ public class PedometerCompTest {
         HashMap<Integer, Integer> steps1 = new HashMap<>();
         Pedometer pedometer1 = new Pedometer(steps1);
         pedometer1.add(1, 2_000);
-        pedometer1.add(2, -1_400);
+        Assertions.assertThrows(IllegalStepsException.class, () -> {
+            pedometer1.add(2, -1_400);
+        });
         pedometer1.add(3, 1_400);
         pedometer1.add(4, 2_000);
 
@@ -33,8 +35,12 @@ public class PedometerCompTest {
         HashMap<Integer, Integer> steps1 = new HashMap<>();
         Pedometer pedometer1 = new Pedometer(steps1);
         pedometer1.add(1, 2_000);
-        pedometer1.add(2, -1_400);
-        pedometer1.add(3, -1_400);
+        Assertions.assertThrows(IllegalStepsException.class, () -> {
+            pedometer1.add(2, -1_400);
+        });
+        Assertions.assertThrows(IllegalStepsException.class, () -> {
+            pedometer1.add(3, -1_400);
+        });
         pedometer1.add(4, 2_000);
 
         HashMap<Integer, Integer> steps2 = new HashMap<>();
@@ -75,7 +81,9 @@ public class PedometerCompTest {
         HashMap<Integer, Integer> steps1 = new HashMap<>();
         Pedometer pedometer1 = new Pedometer(steps1);
         pedometer1.add(1, 2_000);
-        pedometer1.add(2, -1_400);
+        Assertions.assertThrows(IllegalStepsException.class, () -> {
+            pedometer1.add(2, -1_400);
+        });
         pedometer1.add(3, 1_400);
         pedometer1.add(4, 2_000);
 
@@ -99,8 +107,12 @@ public class PedometerCompTest {
         HashMap<Integer, Integer> steps1 = new HashMap<>();
         Pedometer pedometer1 = new Pedometer(steps1);
         pedometer1.add(1, 2_000);
-        pedometer1.add(2, -1_400);
-        pedometer1.add(3, -1_400);
+        Assertions.assertThrows(IllegalStepsException.class, () -> {
+            pedometer1.add(2, -1_400);
+        });
+        Assertions.assertThrows(IllegalStepsException.class, () -> {
+            pedometer1.add(3, -1_400);
+        });
         pedometer1.add(4, 2_000);
 
         HashMap<Integer, Integer> steps2 = new HashMap<>();
