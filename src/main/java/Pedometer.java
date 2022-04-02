@@ -28,16 +28,12 @@ public class Pedometer implements Comparable<Pedometer> {
         }
 
         steps.put(day, sumStep);                                //ИЩЕМ ЛУЧШИЙ ДЕНЬ
-//        if (steps.size() > Math.abs(day)) {                     //если добавляемый день уже прошел
-//            throw new IllegalDayOldException(day);               //выкинуть ошибку
-//        } else {
         for (int title : steps.keySet()) {                    //каждое значение в мапе
             if (steps.get(title) > max) {                     //сравниваем с максимумом, и если значение дня больше,
                 max = steps.get(title);                       //то теперь это значение является максимумом
             }
         }                                                    //РАСЧИТЫВАЕМ СКОЛЬКО ШАГОВ ОСТАЛОСЬ ДО ПОБИТИЯ РЕКОРДА
         maxStep = max - steps.get(day) + 1;                  //вычитаем из максимума пройденные шаги и прибавляем 1
-        // }
         return maxStep;
     }
 
@@ -60,8 +56,8 @@ public class Pedometer implements Comparable<Pedometer> {
     }
 
     public boolean isCorrectDay(int day) {
-        if (!steps.containsKey(day)) {
-            throw new IllegalDayException(day);
+        if (!steps.containsKey(day)) {                   //если запрошенного дня нет в шагомере
+            throw new IllegalDayException(day);          //выкинь ошибку
         } else {
             return true;
         }
