@@ -161,17 +161,14 @@ public class PedometerCompTest {
 
         int minStep = 10_000;
 
-        Map<Integer, Boolean> stepsExpected = new HashMap<>();
-        stepsExpected.put(2, true);
-        stepsExpected.put(5, true);
-        stepsExpected.put(9, true);
-        stepsExpected.put(10, true);
-        stepsExpected.put(14, true);
+        Map<Integer, Integer> stepsExpected = new HashMap<>();
+        stepsExpected.put(2, 10_001);
+        stepsExpected.put(5, 10_200);
+        stepsExpected.put(9, 16_851);
+        stepsExpected.put(10, 11_967);
+        stepsExpected.put(14, 12_861);
 
-        Map<Integer, Boolean> stepsActual = pedometer.printAllDaysByCriteria(step -> step > minStep);
-        for (int title : stepsActual.keySet()) {
-            System.out.println("день " + title + " " + stepsActual.get(title));
-        }
+        Map<Integer, Integer> stepsActual = pedometer.printAllDaysByCriteria(step -> step > minStep);
 
         Assertions.assertEquals(stepsExpected, stepsActual);
     }
