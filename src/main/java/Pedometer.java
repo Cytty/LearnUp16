@@ -76,13 +76,12 @@ public class Pedometer implements Comparable<Pedometer> {
         }
     }
 
-    public Map<Integer, Boolean> printAllDaysByCriteria(Predicate<Integer> criteria) {
-        HashMap<Integer, Boolean> stepsTrue = new HashMap<>();
+    public Map<Integer, Integer> printAllDaysByCriteria(Predicate<Integer> criteria) {
+        HashMap<Integer, Integer> stepsTrue = new HashMap<>();
         for (int title : steps.keySet()) {
-            System.out.println("день " + title + " шагов " + steps.get(title));  //выводит на экран содержимое шагомера
-            if (criteria.test(steps.get(title))) {                               //тестирует критерий предикейта (из теста)
-                stepsTrue.put(title, true);
-
+            if (criteria.test(steps.get(title))) {
+                stepsTrue.put(title, steps.get(title));
+                System.out.println("день " + title + " шагов " + steps.get(title));  //выводит на экран содержимое шагомера//тестирует критерий предикейта (из теста)
             }
         }
         return stepsTrue;
